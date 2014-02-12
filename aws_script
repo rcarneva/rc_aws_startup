@@ -1,0 +1,33 @@
+sudo apt-get update
+
+sudo apt-get install gcc g++ python-pip python-dev gfortran liblapack-dev git python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-nose ack
+
+sudo pip install numpy scipy scikit-learn tornado jinja2
+sudo pip install ipython pandas --upgrade
+
+wget http://archive.cloudera.com/cm4/installer/latest/cloudera-manager-installer.bin
+chmod +x cloudera-manager-installer.bin
+. cloudera-manager-installer.bin
+
+git clone https://github.com/spotify/luigi.git
+sudo python luigi/setup.py install
+
+echo H4sICF6wglIAA3N0YXJ0dXAudGFyAO2WUY/aOBCAeT3/immAousJSIBdtNCgblvaXR13WwG9XkXQygnOxmpiR4mzC6r632+SAE1P157ugVYn+UPgmfHYjgdnPB2XpkHi1U6JiZwPBnlr4WffWoW9lHs1q9cbmGd9VM5r2Ncb9mtgnvSp9mSpoglALaFis/uG37/1/0+pQ6c8AYTUYSGzxGNwF0qXhrBhPhdccSlSwn1YQduHLlNetxwA6zGogAnyU6dqJj4ne3cF5tEJkDpseErdkMGfN69eFaZUqR3wLRW7qip9H9rYiM/GVMkYMoHPVLXRRO2NuGod3qYsgTRmHve5BzTkNGUp4B8Hfia8cidsG0sctfjj99vpy+vlzdy+5xEhmUgZWhdXt5eLX99cLhaEpGU0OnEio1h10oDkUkhIMTEIqZgr5Qfb4PFOBVIcLdBu52vYZxdnFyjz2H6CjZBtN5EP+SNOoLth912RhSH0Jo8teGzsJ73j6i6hcWAbKEEo73BgYcDWR/d2wDESyQ5VioPbbU+GMskXTBiGxPZlElE1ajW3lrvqW1EzaG7Ni1LrRc1NIZlRc9szm2nLwE3irtsS7jn50SdR8yP4fLpPt0ae5Idfz//m0Boe8785MPP8PxwOdP7/HtQfdV0uitxNDkkSijwHH0koPbwHSp7P3k5tw1k5Zr+/Msf9QeSsjS88YD59WfWwqh6z69dXy9tveeS8u7peVlYxK/3lBK/nl++rMwz/NsP76Wx2867q0S88iIdXATSW0/lvwMtrZatYEj35mRyefnm9nE2fX87tVjl4bY6d7JkTjJwHB8+os24dXcfjQvynwYZR9WIp9cibhWUbjY8Hl08OaeTBXDUwGs6zQl4fbcc4HdZulFs6uhUhchpg4Lw9uzWBFgoDu/ULCp/+exLv4O134vKvrP/Ov/7+W9h3rP8wF+BPbtLv/3dglBcAWBPh7hR1SaGikJdb9qBU04D76oFvVHCw0ExJjmWXUKUusshlCRkJIRMW0RievphPYCRkkAv5d/TUpd6HNKYem+hKQ6PRaDQajUaj0Wg0Go1Go9FoNBqNRqM5EX8BaOkG+QAoAAA= | base64 -d | tar -xz
+
+. .bashrc
+
+git clone https://github.com/liftoff/GateOne 
+sudo python GateOne/setup.py install
+
+# adduser
+sudo vim /etc/ssh/sshd_config
+# PasswordAuthentication yes
+sudo service ssh restart
+
+echo H4sICO2wglIAA2x1aWdpdGVzdC50YXIA7dRNa9swGADgnPUrRC5NIVZk2U5YoKcy2HbYqbBDKUax5USrLHn6aJv9+slxmpnBVgbNxtj7HGKs98OyY78qyK30wnnS7SdnQqPlMu+P6aqg42MvpSs6SRnLaZHRLCsmNM1oTMf0XBsaC85zi/EkbIL24Rd5L8T/UbLtjPVY9a8BGp+QHa+N6X5YqxuHUKW4c/jT9XvdBT8bIm+fvLCaqxvu7i/XCEe1aLAJvs9xQjXH1Z4VPlg96knexZ8bbrfCz6ayb0v8k59eolMjK74EaYX7SauPRovTxoytr038t2bjGyEfzOYVNtd/KrHuN7b2/JxGFS3vOmEP+XOspBajqsZY/BjvAEt9CBHXKRkvjKejpN5eClUfUuc4He+mDtWp+b3Yz/EDV0G4UflQeoi50M6OcYRkg8tS81aUJb66whdl2XKpy/JiKB0eiQ063svffm/B66iUFNqTqtme7xovzH+apew4/9mqSLM4/1meM5j/f8LtMB3v0IOwThq9xlW9y5HzVvBW6m3ymds1XgRnF0puFkN2QgmjSZxiw7BZVEZ7G6Onque8720YoSSW2DTp+5M8nsbOCN1Wxoo7FCcXD8onrtrFlkrYZGecX2NRsaTIE5blSbqkCWNvSGXaOE5FkhLe8q9G80fXr8FEAgAAAAAAAAAAAAAAAAAAAAAA8B/7Bn+Do4IAKAAA | base64 -d | tar -xz
+
+hadoop dfsadmin -safemode leave 
+
+cp luigi/LICENSE ./input.txt
+hdfs dfs -put input.txt
+rm input.txt
